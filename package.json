@@ -1,0 +1,38 @@
+{
+  "name": "hd-feedback",
+  "version": "0.0.1",
+  "description": "The simple feedback(include screenshot) for any website.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "cross-env NODE_ENV=production && rollup --config rollup.config.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hstarorg/hd-feedback.git"
+  },
+  "keywords": [
+    "Feedback",
+    "Screenshot",
+    "html2canvas"
+  ],
+  "author": "Jay.M.Hu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hstarorg/hd-feedback/issues"
+  },
+  "homepage": "https://github.com/hstarorg/hd-feedback#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "cross-env": "^5.1.1",
+    "html2canvas": "^0.5.0-beta4",
+    "rollup": "^0.52.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-css-only": "^0.2.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-uglify": "^2.0.1",
+    "shelljs": "^0.7.8"
+  }
+}
