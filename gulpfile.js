@@ -25,18 +25,20 @@ gulp.task('clean', done => {
   done();
 });
 
-gulp.task('compile:js', async () => {
-  const bundle = await rollup.rollup({
-    input: 'src/index.js',
-    plugins
-  });
-
-  await bundle.write({
-    file: `dist/hd-feedback${isProd ? '.min' : ''}.js`,
-    format: 'umd',
-    name: 'hdFeedback',
-    sourcemap: true
-  });
+gulp.task('compile:js', done => {
+  rollup.rollup({ input: 'src/index.js', plugins })
+    .then(bundle => {
+      return bundle.write({
+        file: `dist/hd-feedback${isProd ? '.min' : ''}.js`,
+        format: 'umd',
+        name: 'hdFeedback',
+        sourcemap: true
+      });
+    })
+    .then(() => done(), err => {
+      err && console.error(err);
+      done();
+    });
 });
 
 gulp.task('compile:less', () => {
