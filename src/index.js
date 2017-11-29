@@ -4,10 +4,6 @@ export default {
   init(options) {
     alert('test');
   },
-  show() {
-
-  },
-  hide() {
-
-  }
+  show() {},
+  hide() {}
 };
