@@ -24,7 +24,7 @@ export class Feedback {
 
   _initElement() {
     this.el = document.createElement('div');
-    this.templateData = this.options.i18n[this.options.lang];
+    this.templateData = this.options.i18n[this.options.lang || 'en-us'];
     this.el.innerHTML = getFeedbackTemplate(this.templateData);
     document.body.appendChild(this.el);
   }
@@ -39,7 +39,6 @@ export class Feedback {
   _initOptions() {}
 
   _showScreenshot() {
-    debugger;
     if (this.finishScreenshot) {
       $('.hd-feedback-screenshot', this.el).show();
     } else {
@@ -55,14 +54,14 @@ export class Feedback {
     this.finishScreenshot = false;
     this.screenshotCanvas = null;
 
-    $('.hd-feedback-screenshot', this.el).$el.innerText =  this.templateData.screenShoting;
+    $('.hd-feedback-screenshot', this.el).$el.innerText = this.templateData.screenShoting;
     $('textarea', this.el).$el.value = '';
     $('.hd-check-screenshot', this.el).prop('checked', true);
     $('.hd-check-browserinfo', this.el).prop('checked', true);
   }
 
   _doScreenshot() {
-    html2canvas(document.body, { useCORS: true }).then(canvas => {
+    html2canvas(document.body, Object.assign({ useCORS: true }, this.options.html2canvasOptions)).then(canvas => {
       const base64Img = canvas.toDataURL();
       const img = document.createElement('img');
       img.src = base64Img;
