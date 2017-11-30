@@ -2,11 +2,12 @@ import 'html2canvas';
 
 import { $, getBrowserInfo, openLink } from './util';
 
-import { feedbackTemplate } from './template';
+import { getFeedbackTemplate } from './template';
 
 export class Feedback {
   constructor(options) {
     this.options = options;
+    this.templateData = null;
 
     this.handleCancelBtnClick = this.handleCancelBtnClick.bind(this);
     this.handleSendBtnClick = this.handleSendBtnClick.bind(this);
@@ -23,7 +24,8 @@ export class Feedback {
 
   _initElement() {
     this.el = document.createElement('div');
-    this.el.innerHTML = feedbackTemplate;
+    this.templateData = this.options.i18n[this.options.lang];
+    this.el.innerHTML = getFeedbackTemplate(this.templateData);
     document.body.appendChild(this.el);
   }
 
@@ -53,7 +55,7 @@ export class Feedback {
     this.finishScreenshot = false;
     this.screenshotCanvas = null;
 
-    $('.hd-feedback-screenshot', this.el).$el.innerText = 'Screenshoting...';
+    $('.hd-feedback-screenshot', this.el).$el.innerText =  this.templateData.screenShoting;
     $('textarea', this.el).$el.value = '';
     $('.hd-check-screenshot', this.el).prop('checked', true);
     $('.hd-check-browserinfo', this.el).prop('checked', true);
