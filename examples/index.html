@@ -11,6 +11,9 @@
 </head>
 
 <body>
+  <button onclick="openFeedback()">打开Feedback</button>
+  <hr>
+  <img src="https://avatars0.githubusercontent.com/u/4043284?s=460&v=4" alt="">
   <h1>fdafdsafdasfasfaf</h1>
   <h1>fdafdsafdasfasfaf</h1>
   <h1>fdafdsafdasfasfaf</h1>
@@ -43,37 +46,20 @@
   <h1>fdafdsafdasfasfaf</h1>
   <h1>fdafdsafdasfasfaf</h1>
   <h1>fdafdsafdasfasfaf</h1>
-  <!-- <div class="hd-feedback">
-    <div class="hd-feedback-mask"></div>
-    <div class="hd-feedback-main">
-      <div class="hd-feedback-header">
-        Feedback
-      </div>
-      <div class="hd-feedback-body">
-        <textarea rows="5" placeholder="Please enter your suggestion."></textarea>
-        <div class="hd-feedback-toolbar">
-          <label class="hd-checkbox">
-            <input type="checkbox">
-            <span>Include screenshot</span>
-          </label>
-          <label class="hd-checkbox hd-pull-right">
-            <input type="checkbox">
-            <span>Send Browser Info </span>
-          </label>
-        </div>
-        <div class="hd-feedback-screenshot">
-          Screen shoting...
-        </div>
-      </div>
-      <div class="hd-feedback-footer">
-        <button class="hd-btn hd-btn-cancel">Cancel</button>
-        <button class="hd-btn hd-btn-send">Send</button>
-      </div>
-    </div>
-  </div> -->
   <script src="dist/hd-feedback.js"></script>
   <script>
-    hdFeedback.init();
+    hdFeedback.init({
+      onSend: () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(true);
+          }, 3000)
+        })
+      }
+    });
+    function openFeedback() {
+      hdFeedback.show();
+    }
   </script>
 </body>
 

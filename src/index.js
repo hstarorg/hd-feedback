@@ -1,10 +1,14 @@
-import * as html2canvas from 'html2canvas';
 import { Feedback } from './feedback';
 
 export default {
+  _feedback: null,
   init(options) {
-    return new Feedback(options);
+    this._feedback = new Feedback(options);
   },
-  show() { },
-  hide() { }
+  show() {
+    this._feedback.showFeedback();
+  },
+  hide() {
+    this._feedback.hideFeedback();
+  }
 };

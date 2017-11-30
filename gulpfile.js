@@ -12,6 +12,11 @@ const cleanCSS = require('gulp-clean-css');
 const isProd = process.argv.indexOf('--min') >= 0;
 let server;
 
+function handleError(err) {
+  console.error(err);
+  return true;
+}
+
 const plugins = [
   resolve(),
   babel({
@@ -26,7 +31,8 @@ gulp.task('clean', done => {
 });
 
 gulp.task('compile:js', done => {
-  rollup.rollup({ input: 'src/index.js', plugins })
+  rollup
+    .rollup({ input: 'src/index.js', plugins })
     .then(bundle => {
       return bundle.write({
         file: `dist/hd-feedback${isProd ? '.min' : ''}.js`,
@@ -35,16 +41,20 @@ gulp.task('compile:js', done => {
         sourcemap: true
       });
     })
-    .then(() => done(), err => {
-      err && console.error(err);
-      done();
-    });
+    .then(
+      () => done(),
+      err => {
+        err && console.error(err);
+        done();
+      }
+    );
 });
 
 gulp.task('compile:less', () => {
   let gulpStream = gulp
     .src(['src/less/index.less'])
     .pipe(less())
+    .on('error', handleError)
     .pipe(concat(`hd-feedback${isProd ? '.min' : ''}.css`));
   if (isProd) {
     gulpStream = gulpStream.pipe(cleanCSS({ compatibility: 'ie8' }));
@@ -58,6 +68,7 @@ gulp.task('serve', done => {
       baseDir: '.',
       directory: false
     },
+    ghostMode: false,
     startPath: '/examples/index.html'
   });
   done();

@@ -1,7 +1,8 @@
 @import './common.less';
 
 .hd-feedback {
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
+  display: none;
   div,
   textarea {
     box-sizing: border-box;
@@ -25,6 +26,22 @@
     top: 50px;
     box-shadow: 0 0px 3px rgba(0, 0, 0, 0.6);
   }
+  .hd-loading {
+    &::before {
+      content: '提交中...';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      background-color: rgba(165, 152, 152, 0.3);
+      text-align: center;
+      padding-top: calc(50% - 10px);
+      color: #1ab394;
+    }
+  }
   .hd-feedback-header {
     height: 40px;
     line-height: 30px;
@@ -40,21 +57,26 @@
       height: 140px;
       resize: none;
       border: 1px solid #e5e6e7;
-      padding: 5px;
+      padding: 6px 12px;
       font-size: 14px;
       &:focus {
         border-color: #1ab394;
       }
     }
   }
-  .hd-feedback-toolbar{
+  .hd-feedback-toolbar {
     padding: 5px 0;
   }
-  .hd-feedback-screenshot{
-    background: #ccc;
+  .hd-feedback-screenshot {
+    border: 1px solid #ccc;
     height: 180px;
     line-height: 180px;
     text-align: center;
+    overflow: hidden;
+    overflow-y: auto;
+    img {
+      width: 100%;
+    }
   }
   .hd-feedback-footer {
     height: 40px;

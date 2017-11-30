@@ -1,5 +1,5 @@
 export const feedbackTemplate = `
-<div class="hd-feedback">
+<div class="hd-feedback" data-html2canvas-ignore="true">
   <div class="hd-feedback-mask"></div>
   <div class="hd-feedback-main">
     <div class="hd-feedback-header">
@@ -9,11 +9,11 @@ export const feedbackTemplate = `
       <textarea rows="5" placeholder="Please enter your suggestion."></textarea>
       <div class="hd-feedback-toolbar">
         <label class="hd-checkbox">
-          <input type="checkbox">
+          <input type="checkbox" class="hd-check-screenshot">
           <span>Include screenshot</span>
         </label>
         <label class="hd-checkbox hd-pull-right">
-          <input type="checkbox">
+          <input type="checkbox" class="hd-check-browserinfo">
           <span>Send Browser Info </span>
         </label>
       </div>
